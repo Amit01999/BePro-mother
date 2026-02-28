@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install @studio-freight/react-lenis)",
+      "Bash(npm install lenis)"
+    ]
+  }
+}
