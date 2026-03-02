@@ -11,6 +11,7 @@ const Works = () => {
   const brandTagRefs = useRef([]);
 
   const [currentIndex, setCurrentIndex] = useState(null);
+  const [showComingSoon, setShowComingSoon] = useState(false);
 
   const text = `Cross-brand solutions built with precision —
     each one a story of ambition
@@ -102,6 +103,10 @@ const Works = () => {
     }
   };
 
+  const handleProjectClick = (project) => {
+    if (project.comingSoon) setShowComingSoon(true);
+  };
+
   const handleMouseMove = (e) => {
     if (window.innerWidth < 768) return;
     mouse.current.x = e.clientX + 24;
@@ -131,6 +136,7 @@ const Works = () => {
             className="relative flex flex-col gap-1 py-5 cursor-pointer group md:gap-0"
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => handleMouseLeave(index)}
+            onClick={() => handleProjectClick(project)}
           >
             {/* Hover overlay — dark fill from bottom */}
             <div
@@ -214,6 +220,83 @@ const Works = () => {
           )}
         </div>
       </div>
+      {/* Coming Soon Overlay */}
+      {showComingSoon && (
+        <div
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center"
+          style={{ background: 'rgba(246,242,236,0.97)', backdropFilter: 'blur(12px)' }}
+          onClick={() => setShowComingSoon(false)}
+        >
+          <div className="flex flex-col items-center gap-6 text-center px-6" onClick={(e) => e.stopPropagation()}>
+            {/* Accent line */}
+            <div style={{ width: 48, height: 1, background: '#C8A882' }} />
+
+            {/* Brand label */}
+            <span
+              style={{
+                fontSize: 10,
+                letterSpacing: '0.45em',
+                textTransform: 'uppercase',
+                color: '#C8A882',
+                fontFamily: 'Syne',
+                fontWeight: 600,
+              }}
+            >
+              BePro Jobs
+            </span>
+
+            {/* Headline */}
+            <h2
+              style={{
+                fontFamily: 'Syne',
+                fontWeight: 700,
+                fontSize: 'clamp(2.5rem, 8vw, 6rem)',
+                lineHeight: 1,
+                color: '#0a0a0a',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              Coming Soon
+            </h2>
+
+            {/* Sub-text */}
+            <p
+              style={{
+                fontFamily: 'Syne',
+                fontWeight: 400,
+                fontSize: 'clamp(0.875rem, 2vw, 1.125rem)',
+                color: 'rgba(0,0,0,0.45)',
+                maxWidth: 420,
+                lineHeight: 1.7,
+              }}
+            >
+              We're building something great — a smart career platform connecting talent with opportunity across Bangladesh and beyond.
+            </p>
+
+            {/* Accent line */}
+            <div style={{ width: 48, height: 1, background: '#C8A882' }} />
+
+            {/* Close button */}
+            <button
+              onClick={() => setShowComingSoon(false)}
+              style={{
+                marginTop: 8,
+                fontSize: 10,
+                letterSpacing: '0.45em',
+                textTransform: 'uppercase',
+                color: 'rgba(0,0,0,0.35)',
+                fontFamily: 'Syne',
+                fontWeight: 600,
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              Close ✕
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

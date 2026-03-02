@@ -14,20 +14,20 @@ const BRANDS = [
     id: 'business',
     name: 'Bepro Business',
     tagline: 'Growth & Consulting',
-    desc: 'We architect enterprise growth strategies that move markets. From boardroom to execution, we operate where ambition meets precision and results compound over time.',
+    desc: 'Company A-Z Consultancy, BIDA, TAX, Corporate ',
     color: '#C8A882',
     accent: '#7A5C35',
     num: '01',
     image: buisness,
     stat: '340+',
-    statLabel: 'Enterprises Scaled',
+    statLabel: 'Growth & Guidance',
     url: 'https://www.bepro.com.bd/',
   },
   {
     id: 'training',
     name: 'Bepro Training',
     tagline: 'Skill Development',
-    desc: 'Human capital is the most defensible competitive advantage. We engineer learning ecosystems that transform raw potential into measurable, compounding performance.',
+    desc: 'Company A-Z Consultancy, BIDA, TAX, Corporate',
     color: '#88AA85',
     accent: '#3A6237',
     num: '02',
@@ -40,41 +40,55 @@ const BRANDS = [
     id: 'it',
     name: 'Bepro IT',
     tagline: 'Software & Infrastructure',
-    desc: "Technology is the spine of modern enterprise. We design and build the digital infrastructure that carries tomorrow's most ambitious organisations forward.",
+    desc: 'Web Development, App Development, SEO, ERP, CRM',
     color: '#85A0C8',
     accent: '#1A4A7A',
     num: '03',
     image: it,
     stat: '99.97%',
-    statLabel: 'Uptime Record',
+    statLabel: 'Infrastructure Development',
     url: 'https://bepro.it.com/',
   },
   {
     id: 'fly8',
     name: 'Fly8',
     tagline: 'International Study Abroad',
-    desc: 'We open the world. From first application to campus arrival, Fly8 connects driven students with world-class academic institutions across 40+ countries.',
+    desc: 'One stop Study Abroad Solution',
     color: '#C8C085',
     accent: '#7A6A1A',
     num: '04',
     image: fly8,
     stat: '8,200+',
-    statLabel: 'Students Placed',
+    statLabel: 'One-Stop Study Abroad Solution',
     url: 'https://www.fly8.global/',
   },
   {
     id: 'media',
     name: 'Bepro Media',
     tagline: 'Brand & Marketing',
-    desc: "Perception is reality. We craft brand identities and performance marketing systems that don't just communicate — they command attention and convert at scale.",
+    desc: 'Marketing and Event Management',
     color: '#C885A5',
     accent: '#7A1A50',
     num: '05',
     image:
       'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?w=1000&q=90',
     stat: '4.1B+',
-    statLabel: 'Impressions Served',
+    statLabel: 'Branding & Marketing',
     url: '/media-coming-soon.html',
+  },
+  {
+    id: 'jobs',
+    name: 'Bepro Jobs',
+    tagline: 'Career & Employment',
+    desc: 'Post JOB, Find Job for Bangladesh and Abroad',
+    color: '#7EC8C8',
+    accent: '#1A6A6A',
+    num: '06',
+    image:
+      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1000&q=90',
+    stat: '12K+',
+    statLabel: 'Careers Launched',
+    url: '/jobs-coming-soon.html',
   },
 ];
 
@@ -85,6 +99,7 @@ const SCATTER = [
   { x: '-35vw', y: '35vh', r: -10, s: 0.75 },
   { x: '38vw', y: '30vh', r: 18, s: 0.85 },
   { x: '0vw', y: '45vh', r: 5, s: 0.7 },
+  { x: '-12vw', y: '-48vh', r: -8, s: 0.78 },
 ];
 
 // Grouped center formation
@@ -94,6 +109,7 @@ const GROUP_FORMATION = [
   { x: '6vw', y: '-6vh', r: 5, s: 0.94, z: 3 },
   { x: '8vw', y: '6vh', r: -7, s: 0.9, z: 2 },
   { x: '0vw', y: '0vh', r: 0, s: 1, z: 6 },
+  { x: '2vw', y: '10vh', r: -3, s: 0.88, z: 1 },
 ];
 
 // Left stack positions
@@ -103,6 +119,7 @@ const LEFT_STACK = [
   { x: '-29vw', y: '8vh', r: -1, s: 0.85, z: 30 },
   { x: '-28vw', y: '16vh', r: 2, s: 0.85, z: 20 },
   { x: '-27vw', y: '24vh', r: -3, s: 0.85, z: 10 },
+  { x: '-28vw', y: '32vh', r: 1, s: 0.85, z: 5 },
 ];
 
 // ─── COMPONENTS ──────────────────────────────────────────────────────────────
@@ -160,7 +177,9 @@ function CinematicSequence() {
       gsap.set(texts, { opacity: 0, x: 50 });
       gsap.set(headRef.current, { opacity: 1, scale: 1, y: 0 });
       gsap.set(finalStatementRef.current, { opacity: 0, scale: 0.9 });
-      buttonRefs.current.filter(Boolean).forEach(btn => { btn.style.pointerEvents = 'none'; });
+      buttonRefs.current.filter(Boolean).forEach(btn => {
+        btn.style.pointerEvents = 'none';
+      });
 
       // PHASE 1: Group Formation (Convergence)
       mainTl.to(cards, { opacity: 1, duration: 0.5 }, 0);
@@ -207,14 +226,18 @@ function CinematicSequence() {
         mainTl.to(
           texts[i],
           {
-            opacity: 1, x: 0, duration: 0.6, ease: 'power2.out',
+            opacity: 1,
+            x: 0,
+            duration: 0.6,
+            ease: 'power2.out',
             onStart() {
               buttonRefs.current.forEach((btn, j) => {
                 if (btn) btn.style.pointerEvents = j === i ? 'auto' : 'none';
               });
             },
             onReverseComplete() {
-              if (buttonRefs.current[i]) buttonRefs.current[i].style.pointerEvents = 'none';
+              if (buttonRefs.current[i])
+                buttonRefs.current[i].style.pointerEvents = 'none';
             },
           },
           t,
@@ -238,9 +261,12 @@ function CinematicSequence() {
           mainTl.to(
             texts[i],
             {
-              opacity: 0, x: -50, duration: 0.4,
+              opacity: 0,
+              x: -50,
+              duration: 0.4,
               onStart() {
-                if (buttonRefs.current[i]) buttonRefs.current[i].style.pointerEvents = 'none';
+                if (buttonRefs.current[i])
+                  buttonRefs.current[i].style.pointerEvents = 'none';
               },
               onReverseComplete() {
                 buttonRefs.current.forEach((btn, j) => {
@@ -278,7 +304,8 @@ function CinematicSequence() {
       mainTl.to(
         texts[BRANDS.length - 1],
         {
-          opacity: 0, duration: 0.5,
+          opacity: 0,
+          duration: 0.5,
           onStart() {
             const btn = buttonRefs.current[BRANDS.length - 1];
             if (btn) btn.style.pointerEvents = 'none';
@@ -341,22 +368,61 @@ function CinematicSequence() {
             width: `${size}vh`,
             height: `${size}vh`,
             borderRadius: '50%',
-            border: idx === 3
-              ? '1px solid rgba(200,168,130,0.13)'
-              : `1px solid rgba(0,0,0,${0.038 - idx * 0.007})`,
-            boxShadow: idx === 3
-              ? 'inset 0 0 60px rgba(200,168,130,0.03)'
-              : 'none',
+            border:
+              idx === 3
+                ? '1px solid rgba(200,168,130,0.13)'
+                : `1px solid rgba(0,0,0,${0.038 - idx * 0.007})`,
+            boxShadow:
+              idx === 3 ? 'inset 0 0 60px rgba(200,168,130,0.03)' : 'none',
             pointerEvents: 'none',
           }}
         />
       ))}
 
       {/* ── Precision center crosshair ── */}
-      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', pointerEvents: 'none' }}>
-        <div style={{ position: 'absolute', top: '50%', left: -20, width: 40, height: 1, background: 'rgba(200,168,130,0.25)', transform: 'translateY(-50%)' }} />
-        <div style={{ position: 'absolute', left: '50%', top: -20, width: 1, height: 40, background: 'rgba(200,168,130,0.25)', transform: 'translateX(-50%)' }} />
-        <div style={{ width: 5, height: 5, borderRadius: '50%', border: '1px solid rgba(200,168,130,0.4)', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+      <div
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          pointerEvents: 'none',
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: -20,
+            width: 40,
+            height: 1,
+            background: 'rgba(200,168,130,0.25)',
+            transform: 'translateY(-50%)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            left: '50%',
+            top: -20,
+            width: 1,
+            height: 40,
+            background: 'rgba(200,168,130,0.25)',
+            transform: 'translateX(-50%)',
+          }}
+        />
+        <div
+          style={{
+            width: 5,
+            height: 5,
+            borderRadius: '50%',
+            border: '1px solid rgba(200,168,130,0.4)',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        />
       </div>
 
       {/* ── Layered atmospheric light ── */}
@@ -448,8 +514,10 @@ function CinematicSequence() {
               height: 52,
               borderTop: i < 2 ? '1.5px solid rgba(0,0,0,0.13)' : undefined,
               borderBottom: i >= 2 ? '1.5px solid rgba(0,0,0,0.13)' : undefined,
-              borderLeft: i % 2 === 0 ? '1.5px solid rgba(0,0,0,0.13)' : undefined,
-              borderRight: i % 2 === 1 ? '1.5px solid rgba(0,0,0,0.13)' : undefined,
+              borderLeft:
+                i % 2 === 0 ? '1.5px solid rgba(0,0,0,0.13)' : undefined,
+              borderRight:
+                i % 2 === 1 ? '1.5px solid rgba(0,0,0,0.13)' : undefined,
               pointerEvents: 'none',
             }}
           />
@@ -469,7 +537,14 @@ function CinematicSequence() {
             pointerEvents: 'none',
           }}
         >
-          <div style={{ width: 24, height: 1, background: 'linear-gradient(to right, transparent, rgba(200,168,130,0.3))' }} />
+          <div
+            style={{
+              width: 24,
+              height: 1,
+              background:
+                'linear-gradient(to right, transparent, rgba(200,168,130,0.3))',
+            }}
+          />
           <span
             style={{
               fontSize: 9,
@@ -483,7 +558,14 @@ function CinematicSequence() {
           >
             Growth · Innovation · Impact
           </span>
-          <div style={{ width: 24, height: 1, background: 'linear-gradient(to left, transparent, rgba(200,168,130,0.3))' }} />
+          <div
+            style={{
+              width: 24,
+              height: 1,
+              background:
+                'linear-gradient(to left, transparent, rgba(200,168,130,0.3))',
+            }}
+          />
         </div>
 
         {/* ── Right vertical text ── */}
@@ -500,7 +582,14 @@ function CinematicSequence() {
             pointerEvents: 'none',
           }}
         >
-          <div style={{ width: 24, height: 1, background: 'linear-gradient(to right, transparent, rgba(200,168,130,0.3))' }} />
+          <div
+            style={{
+              width: 24,
+              height: 1,
+              background:
+                'linear-gradient(to right, transparent, rgba(200,168,130,0.3))',
+            }}
+          />
           <span
             style={{
               fontSize: 9,
@@ -512,9 +601,16 @@ function CinematicSequence() {
               whiteSpace: 'nowrap',
             }}
           >
-            Five Brands · One Vision
+            Six Brands · One Vision
           </span>
-          <div style={{ width: 24, height: 1, background: 'linear-gradient(to left, transparent, rgba(200,168,130,0.3))' }} />
+          <div
+            style={{
+              width: 24,
+              height: 1,
+              background:
+                'linear-gradient(to left, transparent, rgba(200,168,130,0.3))',
+            }}
+          />
         </div>
 
         {/* ── Scroll indicator ── */}
@@ -531,7 +627,7 @@ function CinematicSequence() {
             pointerEvents: 'none',
           }}
         >
-          <span
+          {/* <span
             style={{
               fontSize: 8,
               letterSpacing: '0.52em',
@@ -539,10 +635,11 @@ function CinematicSequence() {
               color: 'rgba(0,0,0,0.22)',
               fontFamily: 'Syne',
               fontWeight: 600,
+              marginTop: 20,
             }}
           >
             Scroll
-          </span>
+          </span> */}
           <div
             style={{
               width: 1,
@@ -551,7 +648,14 @@ function CinematicSequence() {
                 'linear-gradient(to bottom, rgba(200,168,130,0.5), transparent)',
             }}
           />
-          <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(200,168,130,0.4)' }} />
+          <div
+            style={{
+              width: 4,
+              height: 4,
+              borderRadius: '50%',
+              background: 'rgba(200,168,130,0.4)',
+            }}
+          />
         </div>
 
         {/* ── Eyebrow label — glassmorphism pill ── */}
@@ -579,7 +683,8 @@ function CinematicSequence() {
               borderRadius: 100,
               background: 'rgba(200,168,130,0.08)',
               border: '1px solid rgba(200,168,130,0.22)',
-              boxShadow: '0 2px 12px rgba(200,168,130,0.08), inset 0 1px 0 rgba(255,255,255,0.5)',
+              boxShadow:
+                '0 2px 12px rgba(200,168,130,0.08), inset 0 1px 0 rgba(255,255,255,0.5)',
               backdropFilter: 'blur(8px)',
               WebkitBackdropFilter: 'blur(8px)',
               fontSize: 9,
@@ -609,7 +714,7 @@ function CinematicSequence() {
             fontSize: 'clamp(4rem,10vw,10rem)',
             fontWeight: 800,
             letterSpacing: '-0.04em',
-            lineHeight: 0.85,
+            lineHeight: 0.95,
             textAlign: 'center',
             textTransform: 'uppercase',
             margin: 0,
@@ -621,12 +726,13 @@ function CinematicSequence() {
               color: '#0D0C0A',
             }}
           >
-            Powering
+            Empowering
           </span>
           <span
             style={{
               display: 'block',
-              background: 'linear-gradient(135deg, #B8905A 0%, #D4B070 30%, #E8C890 55%, #C8A060 80%, #A07840 100%)',
+              background:
+                'linear-gradient(135deg, #B8905A 0%, #D4B070 30%, #E8C890 55%, #C8A060 80%, #A07840 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -635,7 +741,6 @@ function CinematicSequence() {
             Growth
           </span>
         </h1>
-
         {/* ── Thin vertical separator ── */}
         <div
           style={{
@@ -643,24 +748,38 @@ function CinematicSequence() {
             height: 36,
             background:
               'linear-gradient(to bottom, rgba(200,168,130,0.35), transparent)',
-            marginTop: 32,
+            marginTop: 10,
           }}
         />
 
+        <span
+          className="text-3xl"
+          style={{
+            display: 'block',
+            background:
+              'linear-gradient(135deg, #B8905A 0%, #D4B070 30%, #E8C890 55%, #C8A060 80%, #A07840 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}
+        >
+          Welcome to The BePro World
+        </span>
         {/* ── Tagline with flanking gradient rules ── */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             gap: 22,
-            marginTop: 14,
+            marginTop: 18,
           }}
         >
           <div
             style={{
               width: 56,
               height: 1,
-              background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.12))',
+              background:
+                'linear-gradient(to right, transparent, rgba(0,0,0,0.12))',
             }}
           />
           <p
@@ -674,13 +793,14 @@ function CinematicSequence() {
               fontWeight: 500,
             }}
           >
-            Five Brands · One Vision
+            Six Brands · One Vision
           </p>
           <div
             style={{
               width: 56,
               height: 1,
-              background: 'linear-gradient(to left, transparent, rgba(0,0,0,0.12))',
+              background:
+                'linear-gradient(to left, transparent, rgba(0,0,0,0.12))',
             }}
           />
         </div>
@@ -696,7 +816,7 @@ function CinematicSequence() {
             fontFamily: 'Syne',
           }}
         >
-          Business · Training · IT · Fly8 · Media
+          Business · Training · IT · Fly8 · Media · Jobs
         </p>
       </div>
 
@@ -714,14 +834,17 @@ function CinematicSequence() {
         }}
       >
         {/* Radial glow behind text */}
-        <div style={{
-          position: 'absolute',
-          width: '60vw',
-          height: '60vh',
-          borderRadius: '50%',
-          background: 'radial-gradient(ellipse, rgba(200,168,130,0.12) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }} />
+        <div
+          style={{
+            position: 'absolute',
+            width: '60vw',
+            height: '60vh',
+            borderRadius: '50%',
+            background:
+              'radial-gradient(ellipse, rgba(200,168,130,0.12) 0%, transparent 70%)',
+            pointerEvents: 'none',
+          }}
+        />
         <div style={{ textAlign: 'center', position: 'relative' }}>
           <div
             style={{
@@ -785,13 +908,14 @@ function CinematicSequence() {
             <br />
             <span
               style={{
-                background: 'linear-gradient(135deg, #B8905A 0%, #D4B070 40%, #C8A060 100%)',
+                background:
+                  'linear-gradient(135deg, #B8905A 0%, #D4B070 40%, #C8A060 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
               }}
             >
-              Gitanjoli.
+              Gitanjali Trade & Industries Ltd
             </span>
           </h2>
         </div>
@@ -877,7 +1001,8 @@ function CinematicSequence() {
                 WebkitBackdropFilter: 'blur(12px)',
                 borderRadius: 100,
                 padding: '6px 16px 6px 10px',
-                boxShadow: '0 2px 16px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,1)',
+                boxShadow:
+                  '0 2px 16px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,1)',
                 border: '1px solid rgba(255,255,255,0.7)',
                 zIndex: 5,
               }}
@@ -1003,7 +1128,13 @@ function CinematicSequence() {
             <div
               key={`text-${b.id}`}
               ref={el => (textRefs.current[i] = el)}
-              style={{ position: 'absolute', opacity: 0 }}
+              style={{
+                position: 'absolute',
+                opacity: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+              }}
             >
               {/* Tagline pill — refined */}
               <div
@@ -1014,11 +1145,13 @@ function CinematicSequence() {
                   marginBottom: 22,
                 }}
               >
-                <div style={{
-                  width: 32,
-                  height: 1,
-                  background: `linear-gradient(to right, transparent, ${b.color})`,
-                }} />
+                <div
+                  style={{
+                    width: 32,
+                    height: 1,
+                    background: `linear-gradient(to right, transparent, ${b.color})`,
+                  }}
+                />
                 <span
                   style={{
                     display: 'inline-flex',
@@ -1070,7 +1203,9 @@ function CinematicSequence() {
               >
                 {nameParts.length > 1 ? (
                   <>
-                    <span style={{ color: '#0D0C0A', display: 'block' }}>{nameParts[0]}</span>
+                    <span style={{ color: '#0D0C0A', display: 'block' }}>
+                      {nameParts[0]}
+                    </span>
                     <span
                       style={{
                         display: 'block',
@@ -1205,7 +1340,7 @@ function CinematicSequence() {
                 href={b.url}
                 target={b.url.startsWith('/') ? '_self' : '_blank'}
                 rel="noopener noreferrer"
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault();
                   if (b.url.startsWith('/')) {
                     window.location.href = b.url;
@@ -1219,7 +1354,8 @@ function CinematicSequence() {
                   gap: 14,
                   marginTop: 32,
                   padding: '14px 36px',
-                  background: 'linear-gradient(135deg, #131110 0%, #2a2520 100%)',
+                  background:
+                    'linear-gradient(135deg, #131110 0%, #2a2520 100%)',
                   color: '#F6F2EC',
                   borderRadius: 100,
                   fontSize: 10,

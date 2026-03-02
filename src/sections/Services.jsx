@@ -47,10 +47,18 @@ const BRAND_PALETTE = [
     divider: 'rgba(212,144,176,0.22)',
     border: 'rgba(212,144,176,0.18)',
   },
+  { // Jobs — slate teal
+    bg: '#0B0F10',
+    accent: '#7EC8C8',
+    text: '#F6F2EC',
+    textMuted: 'rgba(246,242,236,0.52)',
+    divider: 'rgba(126,200,200,0.22)',
+    border: 'rgba(126,200,200,0.18)',
+  },
 ];
 
 const Services = () => {
-  const text = `Five specialisations.
+  const text = `Six specialisations.
     One unified ecosystem.
     Built to serve enterprise ambition at every level.`;
 
@@ -72,7 +80,7 @@ const Services = () => {
   return (
     <section id="services" className="min-h-screen bg-[#F6F2EC] rounded-t-4xl">
       <AnimatedHeaderSection
-        subTitle={'Our Ecosystem · Five Specialisations'}
+        subTitle={'Our Ecosystem · Six Specialisations'}
         title={'Brands'}
         text={text}
         textColor={'text-black'}
